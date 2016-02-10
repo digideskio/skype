@@ -1,0 +1,4 @@
+#!/bin/bash
+cd "`dirname "$0"`/../src"
+
+docker build -t ${IMAGE:-timonier/skype}:${TAG:-4.3.0.37} .

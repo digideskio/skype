@@ -1,0 +1,39 @@
+#!/bin/bash
+set -x
+
+fail() {
+    echo $1 1>&2
+    echo "Usage: $0 [install|uninstall]" 1>&2
+    exit 1
+}
+
+install() {
+    docker run \
+        -v /:/host \
+        --entrypoint=/bin/bash \
+        --rm \
+        ${IMAGE:-timonier/skype}:${TAG:-4.3.0.37} -c "cp $1 /host/$1"
+}
+
+[[ $# -lt 1 ]] && fail "Invalid number of arguments"
+[[ $EUID != 0 ]] && fail "Impossible to prepare the system without root privileges."
+[[ $(uname) != Linux ]] && fail "Impossible to prepare another operating system than Linux."
+
+case $1 in
+    install )
+        curl -sLo /usr/local/bin/skype "https://github.com/timonier/skype/raw/master/bin/skype"
+        chmod +x /usr/local/bin/skype
+
+        install /usr/share/applications/skype.desktop
+        install /usr/share/pixmaps/skype.png
+    ;;
+
+    uninstall )
+        rm /usr/local/bin/skype
+        rm /usr/share/applications/skype.desktop
+        rm /usr/share/pixmaps/skype.png
+    ;;
+
+    * )
+        fail "Argument $1 is invalid."
+esac
