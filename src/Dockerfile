@@ -4,7 +4,7 @@ MAINTAINER Morgan Auchede <morgan.auchede@gmail.com>
 ENV \
     DEBIAN_FRONTEND=noninteractive \
     QT_X11_NO_MITSHM=1 \
-    PULSEAUDIO_VERSION=4.0 \
+    NO_AT_BRIDGE=1 \
     SKYPE_VERSION=4.3.0.37
 
 RUN set -x \
@@ -19,7 +19,7 @@ RUN set -x \
     # Install packages
 
     && apt-get install -y \
-           pulseaudio:i386=1:$PULSEAUDIO_VERSION* \
+           pulseaudio:i386 \
            skype:i386=$SKYPE_VERSION* \
 
     # Clean
@@ -27,6 +27,6 @@ RUN set -x \
     && rm -rf \
            /var/lib/apt/lists/*
 
-COPY ./root /
+COPY ./rootfs /
 
 ENTRYPOINT [ "/entrypoint.sh" ]

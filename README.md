@@ -1,30 +1,32 @@
-# Installation
+# README
+
+## Installation
 
 Copy the file `bin/skype` into your executable folder (like `/usr/local/bin` or `$HOME/bin`):
 
-```bash
+```sh
 sudo curl -sLo /usr/local/bin/skype "https://github.com/timonier/skype/raw/master/bin/skype"
 sudo chmod +x /usr/local/bin/skype
 ```
 
 Linux users can use the [installer](https://github.com/timonier/skype/blob/master/bin/installer):
 
-```bash
-curl -sL "https://github.com/timonier/skype/raw/master/bin/installer" | sudo bash -s install
+```sh
+curl -sL "https://github.com/timonier/skype/raw/master/bin/installer" | sudo sh -s install
 ```
 
-# Usage
+## Usage
 
 Run the command `skype`:
 
-```bash
+```sh
 skype
 # Start skype
 ```
 
 __Note__: By default, the version `4.3.0.37` will be used. To change the version, define the `TAG` before the command. For example:
 
-```bash
+```sh
 skype -v
 # Skype 4.3.0.37
 # © 2014 Skype and/or Microsoft
@@ -33,7 +35,7 @@ TAG="..." skype -v
 # ...
 ```
 
-# Contributing
+## Contributing
 
 1. Fork it.
 2. Create your branch: `git checkout -b my-new-feature`.
@@ -43,7 +45,7 @@ TAG="..." skype -v
 
 __Note__: Use the script `bin/build` to test your modifications locally.
 
-# Links
+## Links
 
 * [image "timonier/skype"](https://hub.docker.com/r/timonier/skype/)
 * [skype](http://www.skype.com//)

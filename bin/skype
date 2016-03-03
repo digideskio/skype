@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 HOME=$(/usr/bin/getent passwd $USER | cut -d: -f6)
 PWD=$(/bin/pwd)
@@ -6,7 +6,6 @@ PWD=$(/bin/pwd)
 docker run \
     $(ls /dev/video* | awk '{print "--device", $1}') \
     $(env | cut -d= -f1 | awk '{print "-e", $1}') \
-    -e NO_AT_BRIDGE=1 \
     -e PULSE_SERVER=/run/user/$UID/pulse/native \
     -i \
     -t=$([ -t 0 ] && echo "true" || echo "false") \
