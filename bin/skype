@@ -23,6 +23,6 @@ docker run \
     -v "$HOME:$HOME" \
     -v "$PWD:$PWD" \
     -w "$PWD" \
-    --net=host \
+    --net host \
     --privileged \
     ${IMAGE:-timonier/skype}:${TAG:-4.3.0.37} /usr/bin/skype "$@"
