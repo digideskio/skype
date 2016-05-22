@@ -2,7 +2,6 @@ FROM ubuntu:14.04
 MAINTAINER Morgan Auchede <morgan.auchede@gmail.com>
 
 ENV \
-    DEBIAN_FRONTEND=noninteractive \
     QT_X11_NO_MITSHM=1 \
     NO_AT_BRIDGE=1 \
     SKYPE_VERSION=4.3.0.37
@@ -10,6 +9,8 @@ ENV \
 RUN set -x \
 
     # Prepare system
+
+    && export DEBIAN_FRONTEND=noninteractive \
 
     && apt-key adv --keyserver keyserver.ubuntu.com --recv 7212620B \
     && echo "deb http://archive.canonical.com/ $(lsb_release -cs) partner" >> /etc/apt/sources.list \
